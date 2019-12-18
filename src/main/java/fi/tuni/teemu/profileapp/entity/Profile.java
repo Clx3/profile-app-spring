@@ -2,12 +2,17 @@ package fi.tuni.teemu.profileapp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Profile {
 	
 	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "username")
@@ -17,6 +22,14 @@ public class Profile {
 	private String description;
 	
 	public Profile() {}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
 		return email;
