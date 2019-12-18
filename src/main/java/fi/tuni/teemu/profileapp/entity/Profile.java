@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Profile {
 	
 	@Id
 	private String email;
@@ -16,7 +16,7 @@ public class User {
 	@Column(name = "description")
 	private String description;
 	
-	public User() {}
+	public Profile() {}
 
 	public String getEmail() {
 		return email;
