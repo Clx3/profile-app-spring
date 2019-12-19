@@ -12,10 +12,17 @@ import fi.tuni.teemu.profileapp.repository.ProfileRepository;
 public class ProfileService {
 	
 	@Autowired
+	private AuthService authService;
+	
+	@Autowired
 	private ProfileRepository profileRepository;
 	
 	public List<Profile> findAll() {
 		return profileRepository.findAll();
+	}
+	
+	public Profile findMe() {
+		return profileRepository.findByEmail(authService.getCurrentAuthEmail());
 	}
 
 }
