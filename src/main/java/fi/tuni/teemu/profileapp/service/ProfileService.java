@@ -21,6 +21,10 @@ public class ProfileService {
 		return profileRepository.findAll();
 	}
 	
+	public Profile findByUsername(String username) {
+		return profileRepository.findByUsername(username);
+	}
+	
 	public Profile findMe() {
 		return profileRepository.findByEmail(authService.getCurrentAuthEmail());
 	}

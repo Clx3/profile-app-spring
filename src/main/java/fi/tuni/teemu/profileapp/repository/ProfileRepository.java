@@ -10,6 +10,8 @@ public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	
 	List<Profile> findAll();
 	
+	Profile findByUsername(String username);
+	
 	Profile findByEmail(String email);
 	
 }

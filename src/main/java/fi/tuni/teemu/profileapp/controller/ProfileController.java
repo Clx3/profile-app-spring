@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -40,6 +41,17 @@ public class ProfileController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not registered");
 		}
 
+	}
+	
+	@GetMapping(value = "profile/isvalid/")
+	public Boolean getIsUsernameValid(@RequestParam("username") String username) {
+		Profile profile = profileService.findByUsername(username);
+		
+		if(profile != null) {
+			return false;
+		}
+		
+		return true;
 	}
 
 }
