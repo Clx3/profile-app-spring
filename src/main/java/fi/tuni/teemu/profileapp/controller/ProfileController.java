@@ -48,7 +48,6 @@ public class ProfileController {
 		Profile profile = profileService.findByUsername(username);
 		
 		if(profile != null) {
-			System.out.println("IS NOT VALID");
 			return false;
 		}
 		
