@@ -28,5 +28,9 @@ public class ProfileService {
 	public Profile findMe() {
 		return profileRepository.findByEmail(authService.getCurrentAuthEmail());
 	}
+	
+	public Profile save(Profile profile) {
+		return profileRepository.save(profile);
+	}
 
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -31,6 +33,11 @@ public class ProfileController {
 		return profileService.findAll();
 	}
 	
+	@PostMapping(value = "profile/")
+	public Profile createProfile(@RequestBody Profile profile) {
+		return profileService.save(profile);
+	}
+	
 	@GetMapping(value = "profile/me/")
 	public Profile getMe() {
 		Profile profile = profileService.findMe();
@@ -48,6 +55,7 @@ public class ProfileController {
 		Profile profile = profileService.findByUsername(username);
 		
 		if(profile != null) {
+			System.out.println("IS NOT VALID");
 			return false;
 		}
 		
