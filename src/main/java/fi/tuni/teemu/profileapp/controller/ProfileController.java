@@ -13,23 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import fi.tuni.teemu.profileapp.entity.Profile;
-import fi.tuni.teemu.profileapp.service.AuthService;
 import fi.tuni.teemu.profileapp.service.ProfileService;
 
 @RestController
 public class ProfileController {
 	
 	@Autowired
-	private AuthService authService;
-	
-	@Autowired
 	private ProfileService profileService;
 	
 	@GetMapping(value = "profile/")
 	public List<Profile> getAll(Authentication authentication) {
-
-		System.out.println(authService.getCurrentAuthEmail());
-		
 		return profileService.findAll();
 	}
 	

@@ -30,6 +30,12 @@ public class ProfileService {
 	}
 	
 	public Profile save(Profile profile) {
+		profile.setEmail(authService.getCurrentAuthEmail());
+		
+		System.out.println(profile.getUsername());
+		System.out.println(profile.getDescription());
+		System.out.println(profile.getEmail());
+		
 		return profileRepository.save(profile);
 	}
 
