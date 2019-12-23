@@ -1,5 +1,5 @@
-/*DROP TABLE IF EXISTS friend;*/
-/*DROP TABLE IF EXISTS profile;*/
+DROP TABLE IF EXISTS friend;
+DROP TABLE IF EXISTS profile;
 
 CREATE TABLE profile(
 	id SERIAL PRIMARY KEY,
@@ -8,13 +8,13 @@ CREATE TABLE profile(
 	description VARCHAR(500)
 );
 
-INSERT INTO profile (id, email, username, description)
+/*INSERT INTO profile (id, email, username, description)
 VALUES (
 	1,
 	'admin@superduper.com',
 	'Adminboi',
 	'Admin maestro'
-);
+);*/
 
 CREATE TABLE friend(
 	relation_id SERIAL PRIMARY KEY,
