@@ -1,5 +1,6 @@
+/*DROP TABLE IF EXISTS friend;*/
 /*DROP TABLE IF EXISTS profile;*/
-	
+
 CREATE TABLE profile(
 	id SERIAL PRIMARY KEY,
 	email VARCHAR (150) UNIQUE NOT NULL,
@@ -13,4 +14,10 @@ VALUES (
 	'admin@superduper.com',
 	'Adminboi',
 	'Admin maestro'
+);
+
+CREATE TABLE friend(
+	relation_id SERIAL PRIMARY KEY,
+	profile_id INTEGER REFERENCES profile(id),
+	friend_id INTEGER REFERENCES profile(id)
 );

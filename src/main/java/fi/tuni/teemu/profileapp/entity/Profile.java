@@ -13,7 +13,7 @@ public class Profile {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial")
+	@Column(name = "id", columnDefinition = "serial")
 	private Long id;
 	
 	@Column(name = "email")

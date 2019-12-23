@@ -11,17 +11,19 @@ public class Friend {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial")
-	public Long id;
+	@Column(name = "relation_id", columnDefinition = "serial")
+	public Long relationId;
 	
+	@Column(name = "profile_id")
 	public Long profileId;
 	
+	@Column(name = "friend_id")
 	public Long friendId;
 	
 	public Friend() {}
 
-	public Long getId() {
-		return id;
+	public Long getRelationId() {
+		return relationId;
 	}
 
 	public Long getProfileId() {
