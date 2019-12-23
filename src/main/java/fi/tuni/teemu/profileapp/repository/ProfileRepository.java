@@ -12,6 +12,8 @@ public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	
 	Profile findByUsername(String username);
 	
+	List<Profile> findByUsernameContaining(String searchText);
+	
 	Profile findByEmail(String email);
 	
 }

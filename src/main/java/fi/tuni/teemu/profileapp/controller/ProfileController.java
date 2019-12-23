@@ -26,6 +26,11 @@ public class ProfileController {
 		return profileService.findAll();
 	}
 	
+	@GetMapping(value = "profile/search/")
+	public List<Profile> getAllByUsernameSearch(@RequestParam("searchText") String searchText) {
+		return profileService.findAllBySearchText(searchText);
+	}
+	
 	@PostMapping(value = "profile/")
 	public Profile createProfile(@RequestBody Profile profile) {
 		return profileService.save(profile);
