@@ -21,6 +21,10 @@ public class ProfileService {
 		return profileRepository.findAll();
 	}
 	
+	public List<Profile> findAllByIds(List<Long> idList) {
+		return profileRepository.findByIdIn(idList);
+	}
+	
 	public Profile findByUsername(String username) {
 		return profileRepository.findByUsername(username);
 	}

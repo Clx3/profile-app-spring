@@ -1,5 +1,6 @@
 package fi.tuni.teemu.profileapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,17 @@ public class FriendService {
 	@Autowired
 	private FriendRepository friendRepository;
 	
-	public List<Friend> findAll() {
+	public List<Profile> findAll() {
 		Profile userProfile = profileService.findMe();
 		
-		return friendRepository.findAllByProfileId(userProfile.getId());
+		List<Friend> friends = friendRepository.findAllByProfileId(userProfile.getId());
+		
+		List<Long> friendIds = new ArrayList<>();
+		for(Friend friend : friends) {
+			friendIds.add(friend.getFriendId());
+		}
+		
+		return profileService.findAllByIds(friendIds);
 	}
 	
 	public Friend saveByFriendId(Long friendId) {

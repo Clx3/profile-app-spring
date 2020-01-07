@@ -10,6 +10,8 @@ public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	
 	List<Profile> findAll();
 	
+	List<Profile> findByIdIn(List<Long> idList);
+	
 	Profile findByUsername(String username);
 	
 	List<Profile> findByUsernameContainingAndIdNot(String searchText, Long profileId);

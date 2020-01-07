@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import fi.tuni.teemu.profileapp.entity.Friend;
+import fi.tuni.teemu.profileapp.entity.Profile;
 import fi.tuni.teemu.profileapp.service.FriendService;
 
 @RestController
@@ -20,7 +21,7 @@ public class FriendController {
 	private FriendService friendService;
 	
 	@GetMapping(value = "friend/")
-	public List<Friend> getAll() {
+	public List<Profile> getAll() {
 		return friendService.findAll();
 	}
 	
