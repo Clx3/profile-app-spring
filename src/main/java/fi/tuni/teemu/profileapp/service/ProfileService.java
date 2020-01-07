@@ -26,7 +26,9 @@ public class ProfileService {
 	}
 	
 	public List<Profile> findAllBySearchText(String searchText) {
-		return profileRepository.findByUsernameContaining(searchText);
+		Profile userProfile = findMe();
+		
+		return profileRepository.findByUsernameContainingAndIdNot(searchText, userProfile.getId());
 	}
 	
 	public Profile findMe() {

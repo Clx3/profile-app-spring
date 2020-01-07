@@ -12,7 +12,7 @@ public interface ProfileRepository extends CrudRepository<Profile, Long> {
 	
 	Profile findByUsername(String username);
 	
-	List<Profile> findByUsernameContaining(String searchText);
+	List<Profile> findByUsernameContainingAndIdNot(String searchText, Long profileId);
 	
 	Profile findByEmail(String email);
 	
