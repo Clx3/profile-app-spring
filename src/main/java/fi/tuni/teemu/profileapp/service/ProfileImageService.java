@@ -2,8 +2,6 @@ package fi.tuni.teemu.profileapp.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
 
