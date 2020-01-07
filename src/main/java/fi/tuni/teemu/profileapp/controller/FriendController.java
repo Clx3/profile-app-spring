@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,13 @@ public class FriendController {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, "This friend entity already exists!");
 		} else {
 			return friendService.saveByFriendId(friendId);
+		}
+	}
+	
+	@DeleteMapping(value = "friend/add/{friendId}")
+	public void deleteFriend(@PathVariable("friendId") Long friendId) {
+		if(friendService.deleteFriendByFriendId(friendId) == false) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This profile is not a friend with the given id!");
 		}
 	}
 

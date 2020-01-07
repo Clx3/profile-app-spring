@@ -47,5 +47,18 @@ public class FriendService {
 		
 		return friendRepository.findByProfileIdAndFriendId(userProfile.getId(), friendId);
 	}
+	
+	public Boolean deleteFriendByFriendId(Long friendId) {
+		Profile userProfile = profileService.findMe();
+		
+		Friend friend = friendRepository.findByProfileIdAndFriendId(userProfile.getId(), friendId);
+		
+		if(friend != null) {
+			friendRepository.delete(friend);
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
