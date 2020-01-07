@@ -37,7 +37,7 @@ public class FriendController {
 		}
 	}
 	
-	@DeleteMapping(value = "friend/add/{friendId}")
+	@DeleteMapping(value = "friend/delete/{friendId}")
 	public void deleteFriend(@PathVariable("friendId") Long friendId) {
 		if(friendService.deleteFriendByFriendId(friendId) == false) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This profile is not a friend with the given id!");
