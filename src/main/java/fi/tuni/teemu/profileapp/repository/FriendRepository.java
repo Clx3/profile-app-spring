@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import fi.tuni.teemu.profileapp.entity.Friend;
 
 public interface FriendRepository extends CrudRepository<Friend, Long> {
+	
+	public Friend findByProfileIdAndFriendId(Long profileId, Long friendId);
 
 }
