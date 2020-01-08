@@ -25,16 +25,22 @@ public class ProfileImageService {
     private ProfileService profileService;
     
     public byte[] getUserProfilePictureByteData() throws IOException {
-    	String fileName = "Profile_1.png";
+    	String fileName = "Profile_1.jpg";
     	
     	Resource resource = new ClassPathResource("/images/" + fileName);
     	
     	return IOUtils.toByteArray(resource.getInputStream());
     }
+    
+    public Resource getProfilePictureResourceByProfileId(Long profileId) {
+    	String fileName = String.format("Profile_%d.jpg", profileId);
+    	
+    	return new ClassPathResource("/images/" + fileName);
+    }
 	
 	public void storeFile(MultipartFile file, HttpServletRequest request) throws IOException {
 		Profile userProfile = profileService.findMe();
-		String fileName = String.format("Profile_%d.png", userProfile.getId());
+		String fileName = String.format("Profile_%d.jpg", userProfile.getId());
 
 		String path = UPLOAD_DIR + fileName;
 		FileCopyUtils.copy(file.getBytes(), new File(path));
