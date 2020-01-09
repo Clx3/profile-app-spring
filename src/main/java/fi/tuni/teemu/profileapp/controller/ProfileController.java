@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +32,6 @@ public class ProfileController {
 		return profileService.findAllBySearchText(searchText);
 	}
 	
-	@PostMapping(value = "profile/")
-	public Profile createProfile(@RequestBody Profile profile) {
-		return profileService.save(profile);
-	}
-	
 	@GetMapping(value = "profile/me/")
 	public Profile getMe() {
 		Profile profile = profileService.findMe();
@@ -45,7 +41,6 @@ public class ProfileController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User is not registered");
 		}
-
 	}
 	
 	@GetMapping(value = "profile/isvalid/")
@@ -54,9 +49,19 @@ public class ProfileController {
 		
 		if(profile != null) {
 			return false;
-		}
+		}	
 		
 		return true;
+	}
+	
+	@PostMapping(value = "profile/")
+	public Profile createProfile(@RequestBody Profile profile) {
+		return profileService.save(profile);
+	}
+	
+	@PutMapping(value = "profile/me/")
+	public Profile editProfile(@RequestBody Profile profile) {
+		return profileService.edit(profile);
 	}
 
 }

@@ -44,5 +44,14 @@ public class ProfileService {
 		
 		return profileRepository.save(profile);
 	}
+	
+	public Profile edit(Profile profile) {
+		Profile userProfile = findMe();
+		
+		profile.setId(userProfile.getId());
+		profile.setEmail(authService.getCurrentAuthEmail());
+		
+		return profileRepository.save(profile);
+	}
 
 }
