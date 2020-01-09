@@ -21,3 +21,10 @@ CREATE TABLE friend(
 	profile_id INTEGER REFERENCES profile(id),
 	friend_id INTEGER REFERENCES profile(id)
 );
+
+CREATE TABLE message(
+	id SERIAL PRIMARY KEY,
+	sender_id INTEGER REFERENCES profile(id),
+	receiver_id INTEGER REFERENCES profile(id),
+	content VARCHAR(500)
+);
