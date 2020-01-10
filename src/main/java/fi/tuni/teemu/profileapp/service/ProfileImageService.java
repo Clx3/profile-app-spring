@@ -41,7 +41,10 @@ public class ProfileImageService {
 		String fileName = String.format("Profile_%d.jpg", userProfile.getId());
 
 		String path = UPLOAD_DIR + fileName;
-		FileCopyUtils.copy(file.getBytes(), new File(path));
+		File filez = new File(path);
+		System.out.println("STOREFILE");
+		System.out.println(filez.getAbsolutePath());
+		FileCopyUtils.copy(file.getBytes(), filez);
 	}
 
 }
