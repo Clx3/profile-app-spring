@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -24,12 +23,11 @@ public class ProfileImageService {
     @Autowired
     private ProfileService profileService;
     
-    public byte[] getUserProfilePictureByteData() throws IOException {
-    	String fileName = "Profile_1.jpg";
+    public Resource getUserProfilePictureResource() {
+    	Profile userProfile = profileService.findMe();
+    	String fileName = String.format("Profile_%d.jpg", userProfile.getId());
     	
-    	Resource resource = new ClassPathResource("/images/" + fileName);
-    	
-    	return IOUtils.toByteArray(resource.getInputStream());
+    	return new ClassPathResource("/images/" + fileName);
     }
     
     public Resource getProfilePictureResourceByProfileId(Long profileId) {

@@ -27,11 +27,17 @@ public class ProfileImageController {
 	
 	@GetMapping(value = "profile/image/me/", produces = MediaType.IMAGE_JPEG_VALUE)
 	public byte[] getUserProfilePicture() {
-		try {
-			return profileImageService.getUserProfilePictureByteData();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unknown error while serving image");
+		Resource resource = profileImageService.getUserProfilePictureResource();
+		
+		if(resource.exists()) {
+			try {
+				return IOUtils.toByteArray(resource.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unknown error while serving image");
+			}
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile picture found for user.");
 		}
 	}
 	
