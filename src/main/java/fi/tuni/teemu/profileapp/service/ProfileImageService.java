@@ -2,6 +2,12 @@ package fi.tuni.teemu.profileapp.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,10 +47,20 @@ public class ProfileImageService {
 		String fileName = String.format("Profile_%d.jpg", userProfile.getId());
 
 		String path = UPLOAD_DIR + fileName;
-		File filez = new File(path);
-		System.out.println("STOREFILE");
-		System.out.println(filez.getAbsolutePath());
-		FileCopyUtils.copy(file.getBytes(), filez);
+		
+		System.out.println("HERE");
+		
+        try (Stream<Path> walk = Files.walk(Paths.get("./"))) {
+            // We want to find only regular files
+            List<String> result = walk.filter(Files::isRegularFile)
+                    .map(x -> x.toString()).collect(Collectors.toList());
+
+            result.forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		FileCopyUtils.copy(file.getBytes(), new File(path));
 	}
 
 }
