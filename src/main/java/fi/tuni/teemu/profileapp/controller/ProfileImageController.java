@@ -29,6 +29,12 @@ public class ProfileImageController {
 	public byte[] getUserProfilePicture() {
 		Resource resource = profileImageService.getUserProfilePictureResource();
 		
+		try {
+			System.out.println("AAA");
+			System.out.println(resource.getURI());
+		} catch(Exception es) {
+			
+		}
 		if(resource.exists()) {
 			try {
 				return IOUtils.toByteArray(resource.getInputStream());
